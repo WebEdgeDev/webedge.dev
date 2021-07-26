@@ -1,0 +1,7 @@
+/plugins
+.gitignore
+node_modules
+.vscode
+dist
+.nuxt
+nuxt.config.js
