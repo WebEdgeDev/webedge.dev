@@ -1,7 +1,14 @@
 module.exports = {
   mode: 'jit',
   theme: {
-    extend: {},
+    colors: {
+      main: '#071521',
+      white: '#FFFFFF',
+    },
+    fontFamily: {
+      coda: ['"Coda"', 'sans-serif'],
+      sans: ['"Open Sans"', 'sans-serif'],
+    },
   },
   variants: {
     extend: {},
