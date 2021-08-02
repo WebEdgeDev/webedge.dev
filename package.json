@@ -23,7 +23,7 @@
     "nuxt-i18n": "^6.27.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.14.7",
+    "@babel/eslint-parser": "^7.14.9",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@nuxt/image": "^0.4.14",
