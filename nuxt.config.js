@@ -28,9 +28,16 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
+    '@nuxtjs/google-fonts',
   ],
 
-  modules: ['nuxt-i18n', '@nuxt/content', '@nuxtjs/google-fonts'],
+  modules: ['nuxt-i18n', '@nuxt/content'],
+  googleFonts: {
+    families: {
+      Coda: [800],
+      'Open+Sans': true,
+    },
+  },
 
   content: {},
 

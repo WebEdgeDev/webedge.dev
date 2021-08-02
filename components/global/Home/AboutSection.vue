@@ -1,3 +1,6 @@
 <template>
-  <div>Hero</div>
+  <section>
+    <ScrollingText />
+    <ScrollingText />
+  </section>
 </template>
