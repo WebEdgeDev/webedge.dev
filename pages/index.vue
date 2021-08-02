@@ -1,5 +1,11 @@
 <template>
-  <div>Home</div>
+  <main>
+    <HeroSection />
+    <AboutSection />
+    <WorkSection />
+    <ContactSection />
+    <CallToAction />
+  </main>
 </template>
 
 <script>
