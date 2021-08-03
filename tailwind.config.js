@@ -4,6 +4,10 @@ module.exports = {
     colors: {
       main: '#071521',
       white: '#FFFFFF',
+      pink: '#FFC0CB',
+      blue: '#87CEEB',
+      red: '#FF5733',
+      green: '#008080',
     },
     fontFamily: {
       coda: ['"Coda"', 'sans-serif'],
