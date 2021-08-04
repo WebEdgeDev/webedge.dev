@@ -1,10 +1,12 @@
 <template>
   <section class="bg-main text-white">
     <MiddleLine />
-    <h2 class="uppercase font-sans">
-      that's our
-      <span class="font-coda">work</span>
-    </h2>
+    <div class="flex justify-center text-center max-w-[400px] m-auto -mb-10">
+      <h2 class="uppercase font-sans text-[47px] relative z-30">
+        that's our
+        <span class="font-coda text-[47px]">work.</span>
+      </h2>
+    </div>
     <swiper class="swiper" :options="swiperOption">
       <swiper-slide>
         <nuxt-link to="/">
@@ -28,10 +30,14 @@
       </swiper-slide>
       <swiper-slide>
         <nuxt-link to="/">
-          <div class="bg-white h-full"></div>
+          <div class="bg-gray h-full"></div>
         </nuxt-link>
       </swiper-slide>
     </swiper>
+    <div class="flex justify-center items-center pt-16 pb-24">
+      <h4 class="uppercase mr-3">see more</h4>
+      <img src="arrow.svg" class="w-16 h-16 text-white" alt="" />
+    </div>
   </section>
 </template>
 <script>
@@ -61,9 +67,6 @@ export default {
 <style>
 .swiper-slide {
   width: 70%;
-  height: 300px;
-}
-.nuxt-link:hover {
-  cursor: url('/static/cursor.svg'), auto;
+  height: 350px;
 }
 </style>
