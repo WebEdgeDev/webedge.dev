@@ -11,7 +11,7 @@
         <li><NuxtLink to="/">contact</NuxtLink></li>
       </ul>
       <ul class="social-icons">
-        <li>
+        <li class="mr-4">
           <!-- facebook icon -->
           <svg
             width="50"

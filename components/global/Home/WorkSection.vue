@@ -30,7 +30,7 @@
       </swiper-slide>
       <swiper-slide>
         <nuxt-link to="/">
-          <div class="bg-light h-full"></div>
+          <div class="bg-gray h-full"></div>
         </nuxt-link>
       </swiper-slide>
     </swiper>

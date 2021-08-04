@@ -8,7 +8,7 @@ module.exports = {
       blue: '#87CEEB',
       red: '#FF5733',
       green: '#008080',
-      light: '#c2c2c2',
+      gray: '#c2c2c2',
     },
     fontFamily: {
       coda: ['"Coda"', 'sans-serif'],

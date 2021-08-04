@@ -4,7 +4,7 @@
     <AboutSection />
     <WorkSection />
     <ContactSection />
-    <CallToAction />
+    <!-- <CallToAction /> -->
   </main>
 </template>
 
