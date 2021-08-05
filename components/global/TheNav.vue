@@ -4,9 +4,9 @@
       <input id="menu-toogle" type="checkbox" @click="menuToggle" />
       <label for="menu-toogle"></label>
     </div>
-    <div class="fixed top-[14px] left-0 z-50">
+    <div class="fixed top-[14px] left-[8px] z-50">
       <NuxtLink to="/">
-        <MobileLogo :white="menuOpen" />
+        <MobileLogo :white="whiteLogo" />
       </NuxtLink>
     </div>
     <div class="navigation-menu" :class="{ 'hidden-block': !menuOpen }">
@@ -39,10 +39,15 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+
 export default {
   data() {
     return {
       menuOpen: false,
+      whiteLogo: false,
+      whiteLogoPage: false,
     }
   },
   watch: {
@@ -52,6 +57,21 @@ export default {
   },
   mounted() {
     document.addEventListener('click', this.menuClose)
+    gsap.registerPlugin(ScrollTrigger)
+
+    const sections = gsap.utils.toArray('.black-sec')
+
+    sections.forEach((section) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 30px',
+        end: 'bottom 30px ',
+        onEnter: () => this.setWhite(true),
+        onLeave: () => this.setWhite(false),
+        onEnterBack: () => this.setWhite(true),
+        onLeaveBack: () => this.setWhite(false),
+      })
+    })
   },
   beforeDestroy() {
     document.removeEventListener('click', this.menuClose)
@@ -59,11 +79,24 @@ export default {
   methods: {
     menuToggle() {
       this.menuOpen = !this.menuOpen
+
+      if (this.menuOpen) {
+        this.whiteLogo = true
+      }
+      if (!this.menuOpen) {
+        if (!this.whiteLogoPage) {
+          this.whiteLogo = false
+        }
+      }
     },
     menuClose(e) {
       if (!this.$el.contains(e.target)) {
         this.menuOpen = false
       }
+    },
+    setWhite(bool) {
+      this.whiteLogo = bool
+      this.whiteLogoPage = bool
     },
   },
 }
