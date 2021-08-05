@@ -1,6 +1,6 @@
 <template>
-  <nav class="relative h-[70px]">
-    <div class="fixed top-0 right-0 z-50">
+  <nav class="relative">
+    <div class="fixed top-0 right-0 z-50" :class="{ 'white-toogle': whiteLogo }">
       <input id="menu-toogle" type="checkbox" @click="menuToggle" />
       <label for="menu-toogle"></label>
     </div>
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       menuOpen: false,
-      whiteLogo: false,
+      whiteLogo: true,
       whiteLogoPage: false,
     }
   },
@@ -107,8 +107,20 @@ export default {
   @apply cursor-pointer absolute top-[14px] right-[24px] w-[40px] h-[40px] opacity-0;
 }
 
+.white-toogle label {
+  @apply bg-white;
+}
+
+.white-toogle label::after {
+  @apply bg-white;
+}
+
+.white-toogle label::before {
+  @apply bg-white;
+}
+
 label {
-  @apply cursor-pointer absolute top-[34px] right-[24px] bg-main h-[3px] w-[40px];
+  @apply cursor-pointer absolute top-[34px] right-[24px] bg-main h-[3px] w-[40px] duration-300;
 }
 
 label::after {
@@ -121,6 +133,10 @@ label::before {
   @apply absolute top-[10px] left-[6px] bg-main h-[3px] w-[28px] duration-300;
 
   content: '';
+}
+
+#menu-toogle:checked ~ label {
+  @apply bg-main;
 }
 
 #menu-toogle:checked ~ label::after {
