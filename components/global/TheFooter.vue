@@ -1,13 +1,21 @@
 <template>
-  <footer class="bg-main py-24 text-white px-4">
-    <p>INFO@WEBEDGE.DEV</p>
-    <p class="pb-10">With love from Web Edge Development</p>
+  <footer class="bg-main py-10 text-white px-4">
+    <div class="font-coda text-center py-10">
+      <p class="text-lg">+37062943426</p>
+      <p class="text-lg">INFO@WEBEDGE.DEV</p>
+    </div>
     <ul
       class="
         flex
         justify-center
         relative
         after:absolute after:top-[50%] after:left-0 after:w-[20%] after:h-[2px] after:bg-white
+        before:absolute
+        before:top-[50%]
+        before:right-0
+        before:w-[20%]
+        before:h-[2px]
+        before:bg-white
       "
     >
       <li class="mr-4">
