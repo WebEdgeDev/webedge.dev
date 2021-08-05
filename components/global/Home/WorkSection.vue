@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-main text-white">
+  <section class="black-sec bg-main text-white">
     <MiddleLine />
     <div class="flex justify-center text-center max-w-[400px] m-auto -mb-10">
       <h2 class="uppercase font-sans text-[47px] relative z-30">
