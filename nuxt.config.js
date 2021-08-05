@@ -29,6 +29,7 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
     '@nuxtjs/google-fonts',
+    'nuxt-gsap-module',
   ],
 
   modules: ['nuxt-i18n', '@nuxt/content'],
@@ -36,6 +37,12 @@ export default {
     families: {
       Coda: [800],
       'Open+Sans': true,
+    },
+  },
+
+  gsap: {
+    extraPlugins: {
+      scrollTrigger: true,
     },
   },
 

@@ -1,12 +1,12 @@
 <template>
-  <nav class="relative h-[70px]">
-    <div class="fixed top-0 right-0 z-50">
+  <nav class="relative">
+    <div class="fixed top-0 right-0 z-50" :class="{ 'white-toogle': whiteLogo }">
       <input id="menu-toogle" type="checkbox" @click="menuToggle" />
       <label for="menu-toogle"></label>
     </div>
-    <div class="fixed top-[14px] left-0 z-50">
+    <div class="fixed top-[14px] left-[8px] z-50">
       <NuxtLink to="/">
-        <MobileLogo :white="menuOpen" />
+        <MobileLogo :white="whiteLogo" />
       </NuxtLink>
     </div>
     <div class="navigation-menu" :class="{ 'hidden-block': !menuOpen }">
@@ -39,10 +39,15 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+
 export default {
   data() {
     return {
       menuOpen: false,
+      whiteLogo: true,
+      whiteLogoPage: false,
     }
   },
   watch: {
@@ -52,6 +57,21 @@ export default {
   },
   mounted() {
     document.addEventListener('click', this.menuClose)
+    gsap.registerPlugin(ScrollTrigger)
+
+    const sections = gsap.utils.toArray('.black-sec')
+
+    sections.forEach((section) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 30px',
+        end: 'bottom 30px ',
+        onEnter: () => this.setWhite(true),
+        onLeave: () => this.setWhite(false),
+        onEnterBack: () => this.setWhite(true),
+        onLeaveBack: () => this.setWhite(false),
+      })
+    })
   },
   beforeDestroy() {
     document.removeEventListener('click', this.menuClose)
@@ -59,11 +79,24 @@ export default {
   methods: {
     menuToggle() {
       this.menuOpen = !this.menuOpen
+
+      if (this.menuOpen) {
+        this.whiteLogo = true
+      }
+      if (!this.menuOpen) {
+        if (!this.whiteLogoPage) {
+          this.whiteLogo = false
+        }
+      }
     },
     menuClose(e) {
       if (!this.$el.contains(e.target)) {
         this.menuOpen = false
       }
+    },
+    setWhite(bool) {
+      this.whiteLogo = bool
+      this.whiteLogoPage = bool
     },
   },
 }
@@ -74,8 +107,20 @@ export default {
   @apply cursor-pointer absolute top-[14px] right-[24px] w-[40px] h-[40px] opacity-0;
 }
 
+.white-toogle label {
+  @apply bg-white;
+}
+
+.white-toogle label::after {
+  @apply bg-white;
+}
+
+.white-toogle label::before {
+  @apply bg-white;
+}
+
 label {
-  @apply cursor-pointer absolute top-[34px] right-[24px] bg-main h-[3px] w-[40px];
+  @apply cursor-pointer absolute top-[34px] right-[24px] bg-main h-[3px] w-[40px] duration-300;
 }
 
 label::after {
@@ -88,6 +133,10 @@ label::before {
   @apply absolute top-[10px] left-[6px] bg-main h-[3px] w-[28px] duration-300;
 
   content: '';
+}
+
+#menu-toogle:checked ~ label {
+  @apply bg-main;
 }
 
 #menu-toogle:checked ~ label::after {
