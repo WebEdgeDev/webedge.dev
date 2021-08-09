@@ -14,6 +14,7 @@ module.exports = {
     fontFamily: {
       coda: ['"Coda"', 'sans-serif'],
       sans: ['"Open Sans"', 'sans-serif'],
+      cinzel: ['"Cinzel"', 'sans-serif'],
     },
   },
   variants: {
