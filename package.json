@@ -20,7 +20,7 @@
     "@hcaptcha/vue-hcaptcha": "^0.3.0",
     "@nuxt/content": "^1.14.0",
     "nuxt": "^2.15.7",
-    "nuxt-i18n": "^6.27.0",
+    "nuxt-i18n": "^6.28.1",
     "particles.js": "^2.0.0",
     "swiper": "^6.7.0",
     "vue-awesome-swiper": "^4.1.1"
