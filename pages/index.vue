@@ -1,5 +1,6 @@
 <template>
   <main>
+    <div id="particles-js"></div>
     <HeroSection />
     <AboutSection />
     <WorkSection />
@@ -9,5 +10,17 @@
 </template>
 
 <script>
-export default {}
+if (process.browser) {
+  require('particles.js')
+}
+export default {
+  mounted() {
+    this.initParticles()
+  },
+  methods: {
+    initParticles() {
+      window.particlesJS.load('particles-js', '/particles.json', function () {})
+    },
+  },
+}
 </script>
