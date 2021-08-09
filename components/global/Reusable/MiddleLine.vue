@@ -14,7 +14,7 @@ export default {
 </script>
 <style lang="postcss">
 .my-line {
-  @apply h-[100px] relative;
+  @apply h-[120px] relative;
 }
 .my-line::before {
   @apply h-full absolute left-[50%] w-[1px] bg-main;

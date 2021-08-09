@@ -3,6 +3,7 @@ module.exports = {
   theme: {
     colors: {
       main: '#071521',
+      second: '#232323',
       white: '#FFFFFF',
       pink: '#FFC0CB',
       blue: '#87CEEB',

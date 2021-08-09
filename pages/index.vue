@@ -3,8 +3,8 @@
     <HeroSection />
     <AboutSection />
     <WorkSection />
+    <CallToAction />
     <ContactSection />
-    <!-- <CallToAction /> -->
   </main>
 </template>
 
