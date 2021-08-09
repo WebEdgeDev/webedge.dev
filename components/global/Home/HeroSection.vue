@@ -8,10 +8,10 @@
         <span class="font-cinzel font-bold text-[43px]">AGENCY</span>
       </div>
 
-      WE DO
+      WE <span class="font-coda text-[37px]">DO</span>
       <span class="font-cinzel font-bold text-[43px]">REALLY</span>
-      <p class="font-coda text-[38px] text-center">
-        cool <span class="font-sans font-bold text-[40px]">websites</span>
+      <p class="font-coda text-[37px] text-center">
+        cool <span class="font-sans text-[40px]">websites</span>
       </p>
     </h2>
   </div>
