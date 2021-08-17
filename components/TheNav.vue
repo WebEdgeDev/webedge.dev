@@ -245,15 +245,18 @@ label::before {
   }
 
   .nav-links li a {
-    @apply py-2 px-4;
+    @apply py-2 px-4 font-bold tracking-wider;
+
+    -webkit-font-smoothing: antialiased;
   }
   .nav-links .nuxt-link-exact-active::after,
   .nav-links li a::after {
     @apply absolute left-0 top-0 w-full h-full;
 
     content: '';
-    border-radius: 50%;
-    border: 1px solid transparent;
+
+    /* border-radius: 50%; */
+    border: 2px solid transparent;
   }
 
   .nav-links .nuxt-link-exact-active::after,

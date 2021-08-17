@@ -17,7 +17,7 @@ export default {
   css: [],
   plugins: [{ src: '@/plugins/vue-awesome-swiper', mode: 'client' }],
 
-  components: true,
+  components: [{ pathPrefix: false, path: '~/components' }],
   telemetry: false,
   loading: false,
   loadingIndicator: false,
@@ -32,7 +32,7 @@ export default {
     'nuxt-gsap-module',
   ],
 
-  modules: ['nuxt-i18n', '@nuxt/content'],
+  modules: [],
   googleFonts: {
     families: {
       Coda: [800],
@@ -46,8 +46,5 @@ export default {
       scrollTo: true,
     },
   },
-
-  content: {},
-
   build: {},
 }
