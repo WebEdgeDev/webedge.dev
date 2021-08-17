@@ -13,9 +13,9 @@
     <div class="navigation-menu" :class="{ 'hidden-block': !menuOpen }">
       <ul class="nav-links" :class="{ 'white-links': whiteLogo }">
         <li><NuxtLink to="/">home</NuxtLink></li>
-        <li><NuxtLink to="/a">work</NuxtLink></li>
-        <li><NuxtLink to="/a">about</NuxtLink></li>
-        <li><NuxtLink to="/a">contact</NuxtLink></li>
+        <li><NuxtLink to="/work">work</NuxtLink></li>
+        <li><NuxtLink to="/about">about</NuxtLink></li>
+        <li><NuxtLink to="/contact">contact</NuxtLink></li>
       </ul>
       <div class="flex flex-col items-center">
         <ul class="social-icons">
