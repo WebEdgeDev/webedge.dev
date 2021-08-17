@@ -24,6 +24,7 @@ export default {
     const showDemo = () => {
       h2s.forEach((h2, index) => {
         const p = h2.querySelector('p')
+        const about = document.querySelector('.about')
         const [x, xEnd] =
           index === 0 ? ['100%', (p.scrollWidth - h2.offsetWidth) * -2] : [p.scrollWidth * -1, 0]
         gsap.fromTo(
@@ -32,8 +33,8 @@ export default {
           {
             x: xEnd,
             scrollTrigger: {
-              trigger: h2,
-              scrub: 0.1,
+              trigger: about,
+              scrub: 0.7,
             },
           }
         )

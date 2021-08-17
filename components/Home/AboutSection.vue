@@ -1,5 +1,5 @@
 <template>
-  <section class="pt-16 pb-24 text-main">
+  <section class="about pt-16 pb-24 text-main">
     <div class="pb-16">
       <ScrollingText />
     </div>
@@ -11,7 +11,11 @@
         class="
           font-coda
           relative
-          before:absolute before:bottom-0 before:w-[100px] before:h-[2px] before:bg-main
+          before:absolute
+          before:bottom-0
+          before:w-[100px]
+          before:h-[2px]
+          before:bg-main
         "
       >
         Contact us
