@@ -9,33 +9,36 @@
     </div>
 
     <div class="area">
-      <swiper class="swiper" :options="swiperOption">
-        <swiper-slide>
-          <nuxt-link to="/">
-            <div class="bg-pink h-full"></div>
-          </nuxt-link>
-        </swiper-slide>
-        <swiper-slide>
-          <nuxt-link to="/">
-            <div class="bg-red h-full"></div>
-          </nuxt-link>
-        </swiper-slide>
-        <swiper-slide>
-          <nuxt-link to="/">
-            <div class="bg-green h-full"></div>
-          </nuxt-link>
-        </swiper-slide>
-        <swiper-slide>
-          <nuxt-link to="/">
-            <div class="bg-blue h-full"></div>
-          </nuxt-link>
-        </swiper-slide>
-        <swiper-slide>
-          <nuxt-link to="/">
-            <div class="bg-gray h-full"></div>
-          </nuxt-link>
-        </swiper-slide>
-      </swiper>
+      <client-only>
+        <swiper class="swiper" :options="swiperOption">
+          <swiper-slide>
+            <nuxt-link to="/">
+              <div class="bg-pink h-full"></div>
+            </nuxt-link>
+          </swiper-slide>
+          <swiper-slide>
+            <nuxt-link to="/">
+              <div class="bg-red h-full"></div>
+            </nuxt-link>
+          </swiper-slide>
+          <swiper-slide>
+            <nuxt-link to="/">
+              <div class="bg-green h-full"></div>
+            </nuxt-link>
+          </swiper-slide>
+          <swiper-slide>
+            <nuxt-link to="/">
+              <div class="bg-blue h-full"></div>
+            </nuxt-link>
+          </swiper-slide>
+          <swiper-slide>
+            <nuxt-link to="/">
+              <div class="bg-gray h-full"></div>
+            </nuxt-link>
+          </swiper-slide>
+        </swiper>
+      </client-only>
+
       <div
         class="
           follower
@@ -101,7 +104,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss" scoped>
 .swiper-slide {
   width: 70%;
   height: 350px;

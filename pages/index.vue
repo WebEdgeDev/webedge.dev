@@ -13,6 +13,7 @@
 if (process.browser) {
   require('particles.js')
 }
+
 export default {
   mounted() {
     this.initParticles()
@@ -24,3 +25,9 @@ export default {
   },
 }
 </script>
+<style lang="postcss">
+.swiper-slide {
+  width: 70%;
+  height: 350px;
+}
+</style>
