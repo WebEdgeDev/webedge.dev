@@ -1,19 +1,21 @@
 <template>
   <nav class="relative">
-    <div class="fixed top-0 right-0 z-50" :class="{ 'white-toogle': whiteLogo }">
+    <div v-if="mobile" class="menu-block" :class="{ 'white-toogle': whiteLogo }">
       <input id="menu-toogle" type="checkbox" @click="menuToggle" />
       <label for="menu-toogle"></label>
     </div>
-    <div class="fixed top-[14px] left-[8px] z-50">
+    <div class="logo-block">
       <NuxtLink to="/">
-        <MobileLogo :white="whiteLogo" />
+        <MobileLogo v-if="mobile" :white="whiteLogo" />
+        <DesktopLogo v-if="!mobile" :white="whiteLogo" />
       </NuxtLink>
     </div>
     <div class="navigation-menu" :class="{ 'hidden-block': !menuOpen }">
-      <ul class="nav-links">
+      <ul class="nav-links" :class="{ 'white-links': whiteLogo }">
         <li><NuxtLink to="/">home</NuxtLink></li>
-        <li><NuxtLink to="/">work</NuxtLink></li>
-        <li><NuxtLink to="/">contact</NuxtLink></li>
+        <li><NuxtLink to="/a">work</NuxtLink></li>
+        <li><NuxtLink to="/a">about</NuxtLink></li>
+        <li><NuxtLink to="/a">contact</NuxtLink></li>
       </ul>
       <div class="flex flex-col items-center">
         <ul class="social-icons">
@@ -28,10 +30,10 @@
             </a>
           </li>
         </ul>
-        <div class="lang">
-          <NuxtLink to="/">EN</NuxtLink>
-          -
-          <NuxtLink to="/">LT</NuxtLink>
+        <div class="lang" :class="{ 'white-links': whiteLogo }">
+          <a href="/">EN</a>
+          <span class="shot-line">-</span>
+          <a href="/">LT</a>
         </div>
       </div>
     </div>
@@ -45,16 +47,30 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 export default {
   data() {
     return {
+      mobile: true,
       menuOpen: false,
       whiteLogo: true,
       whiteLogoPage: false,
+      windowWidth: 0,
     }
   },
   watch: {
     $route() {
       this.menuOpen = false
     },
+
+    windowWidth() {
+      if (this.windowWidth >= 1024) {
+        this.mobile = false
+      } else {
+        this.mobile = true
+      }
+    },
   },
+  beforeMount() {
+    this.windowWidth = window.innerWidth
+  },
+
   mounted() {
     document.addEventListener('click', this.menuClose)
     gsap.registerPlugin(ScrollTrigger)
@@ -71,6 +87,10 @@ export default {
         onEnterBack: () => this.setWhite(true),
         onLeaveBack: () => this.setWhite(false),
       })
+    })
+
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth
     })
   },
   beforeDestroy() {
@@ -103,6 +123,14 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.menu-block {
+  @apply fixed top-0 right-0 z-50;
+}
+
+.logo-block {
+  @apply fixed top-[14px] left-[8px] z-50;
+}
+
 #menu-toogle {
   @apply cursor-pointer absolute top-[14px] right-[24px] w-[40px] h-[40px] opacity-0;
 }
@@ -160,11 +188,11 @@ label::before {
 }
 
 .nav-links {
-  @apply text-center text-white font-coda uppercase text-[40px];
+  @apply text-center text-white font-coda uppercase text-[40px] mr-4;
 }
 
 .nav-links li {
-  @apply block py-2 w-screen border border-r-0 border-l-0;
+  @apply block py-2 mx-8 w-screen border border-r-0 border-l-0;
 }
 
 .social-icons {
@@ -177,5 +205,80 @@ label::before {
 
 .lang {
   @apply text-white text-lg;
+}
+
+@screen lg {
+  .menu-block {
+    @apply hidden;
+  }
+
+  .hidden-block {
+    transform: translateX(0);
+  }
+
+  .navigation-menu {
+    @apply w-full flex-row justify-end items-center bg-[transparent] h-auto pt-4 pb-4 pr-4;
+  }
+
+  .social-icons {
+    display: none;
+  }
+
+  .lang {
+    @apply px-2;
+  }
+
+  .lang a {
+    @apply px-2 text-main;
+  }
+
+  .nav-links {
+    @apply text-main flex flex-row justify-center text-base font-sans;
+  }
+
+  .white-links a {
+    @apply text-white;
+  }
+
+  .nav-links li {
+    @apply border-0 w-auto my-4 relative duration-500;
+  }
+
+  .nav-links li a {
+    @apply py-2 px-4;
+  }
+  .nav-links .nuxt-link-exact-active::after,
+  .nav-links li a::after {
+    @apply absolute left-0 top-0 w-full h-full;
+
+    content: '';
+    border-radius: 50%;
+    border: 1px solid transparent;
+  }
+
+  .nav-links .nuxt-link-exact-active::after,
+  .nav-links li a:hover::after {
+    @apply border-main;
+
+    transition: border-top-color 0.05s linear, border-right-color 0.05s linear 0.05s,
+      border-bottom-color 0.1s linear 0.15s, border-left-color 0.05s linear 0.2s;
+  }
+  .nav-links .nuxt-link-exact-active,
+  .nav-links li:hover {
+    transform: rotate(-10deg);
+  }
+
+  .white-links .nuxt-link-exact-active::after,
+  .white-links li a:hover::after {
+    @apply border-white;
+  }
+
+  .shot-line {
+    @apply hidden;
+  }
+
+  .logo-block {
+    @apply pt-4;
+  }
 }
 </style>
