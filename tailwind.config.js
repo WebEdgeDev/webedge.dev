@@ -1,6 +1,14 @@
 module.exports = {
   mode: 'jit',
   theme: {
+    container: {
+      padding: {
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
     colors: {
       main: '#071521',
       second: '#232323',

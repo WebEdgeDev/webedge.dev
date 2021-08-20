@@ -5,6 +5,7 @@
     <TheFooter />
   </div>
 </template>
+
 <style>
 #particles-js canvas {
   position: absolute;

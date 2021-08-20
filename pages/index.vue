@@ -17,10 +17,21 @@ if (process.browser) {
 export default {
   mounted() {
     this.initParticles()
+    this.$scrollTrigger.gsapWhite()
+  },
+  beforeDestroy() {
+    this.$scrollTrigger.killGsapWhite()
   },
   methods: {
     initParticles() {
       window.particlesJS.load('particles-js', '/particles.json', function () {})
+    },
+  },
+  nuxtI18n: {
+    paths: {
+      lt: '/',
+      en: '/',
+      ru: '/',
     },
   },
 }

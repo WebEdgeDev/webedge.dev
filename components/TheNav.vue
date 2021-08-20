@@ -1,21 +1,21 @@
 <template>
   <nav class="relative">
-    <div v-if="mobile" class="menu-block" :class="{ 'white-toogle': whiteLogo }">
+    <div v-if="mobile" class="menu-block" :class="{ 'white-toogle': $store.state.whiteLogo }">
       <input id="menu-toogle" type="checkbox" @click="menuToggle" />
       <label for="menu-toogle"></label>
     </div>
-    <div class="logo-block">
+    <div v-if="loaded" class="logo-block">
       <NuxtLink to="/">
-        <MobileLogo v-if="mobile" :white="whiteLogo" />
-        <DesktopLogo v-if="!mobile" :white="whiteLogo" />
+        <MobileLogo v-if="mobile" :white="$store.state.whiteLogo" />
+        <DesktopLogo v-if="!mobile" :white="$store.state.whiteLogo" />
       </NuxtLink>
     </div>
     <div class="navigation-menu" :class="{ 'hidden-block': !menuOpen }">
-      <ul class="nav-links" :class="{ 'white-links': whiteLogo }">
-        <li><NuxtLink to="/">home</NuxtLink></li>
-        <li><NuxtLink to="/work">work</NuxtLink></li>
-        <li><NuxtLink to="/about">about</NuxtLink></li>
-        <li><NuxtLink to="/contact">contact</NuxtLink></li>
+      <ul class="nav-links" :class="{ 'white-links': $store.state.whiteLogo }">
+        <li><NuxtLink :to="localePath('/')">home</NuxtLink></li>
+        <li><NuxtLink :to="localePath('work')">work</NuxtLink></li>
+        <li><NuxtLink :to="localePath('about')">about</NuxtLink></li>
+        <li><NuxtLink :to="localePath('contact')">contact</NuxtLink></li>
       </ul>
       <div class="flex flex-col items-center">
         <ul class="social-icons">
@@ -30,10 +30,13 @@
             </a>
           </li>
         </ul>
-        <div class="lang" :class="{ 'white-links': whiteLogo }">
-          <a href="/">EN</a>
+
+        <div class="lang" :class="{ 'white-links': $store.state.whiteLogo }">
+          <a :href="switchLocalePath('en')">EN</a>
           <span class="shot-line">-</span>
-          <a href="/">LT</a>
+          <a :href="switchLocalePath('lt')">LT</a>
+          <span class="shot-line">-</span>
+          <a :href="switchLocalePath('ru')">RU</a>
         </div>
       </div>
     </div>
@@ -41,18 +44,19 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-
 export default {
   data() {
     return {
       mobile: true,
       menuOpen: false,
-      whiteLogo: true,
-      whiteLogoPage: false,
       windowWidth: 0,
+      loaded: false,
     }
+  },
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    },
   },
   watch: {
     $route() {
@@ -72,27 +76,14 @@ export default {
   },
 
   mounted() {
+    this.loaded = true
+
     document.addEventListener('click', this.menuClose)
-    gsap.registerPlugin(ScrollTrigger)
-
-    const sections = gsap.utils.toArray('.black-sec')
-
-    sections.forEach((section) => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top 30px',
-        end: 'bottom 30px ',
-        onEnter: () => this.setWhite(true),
-        onLeave: () => this.setWhite(false),
-        onEnterBack: () => this.setWhite(true),
-        onLeaveBack: () => this.setWhite(false),
-      })
-    })
-
     window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth
     })
   },
+
   beforeDestroy() {
     document.removeEventListener('click', this.menuClose)
   },
@@ -101,11 +92,11 @@ export default {
       this.menuOpen = !this.menuOpen
 
       if (this.menuOpen) {
-        this.whiteLogo = true
+        this.$store.state.whiteLogo = true
       }
       if (!this.menuOpen) {
-        if (!this.whiteLogoPage) {
-          this.whiteLogo = false
+        if (!this.$store.state.whiteLogoPage) {
+          this.$store.state.whiteLogo = false
         }
       }
     },
@@ -113,10 +104,6 @@ export default {
       if (!this.$el.contains(e.target)) {
         this.menuOpen = false
       }
-    },
-    setWhite(bool) {
-      this.whiteLogo = bool
-      this.whiteLogoPage = bool
     },
   },
 }
@@ -184,7 +171,7 @@ label::before {
 }
 
 .navigation-menu {
-  @apply ease-in-out fixed h-screen flex flex-col justify-between items-center bg-main duration-300 z-40 pt-32 pb-6;
+  @apply ease-in-out fixed h-screen flex flex-col justify-between items-center bg-second duration-300 z-40 pt-32 pb-6;
 }
 
 .nav-links {

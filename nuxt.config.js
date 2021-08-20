@@ -15,7 +15,11 @@ export default {
   },
 
   css: [],
-  plugins: ['~/plugins/vue-awesome-swiper.client'],
+  plugins: [
+    '~/plugins/vue-awesome-swiper.client',
+    '~/plugins/dataApi',
+    '~/plugins/scrollTrigger.client',
+  ],
 
   components: [{ pathPrefix: false, path: '~/components' }],
   telemetry: false,
@@ -27,12 +31,14 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss',
-    '@nuxt/image',
     '@nuxtjs/google-fonts',
     'nuxt-gsap-module',
   ],
-
-  modules: [],
+  modules: ['nuxt-i18n'],
+  i18n: {
+    locales: ['en', 'lt', 'ru'],
+    defaultLocale: 'en',
+  },
   googleFonts: {
     families: {
       Coda: [800],
@@ -40,12 +46,6 @@ export default {
     },
   },
 
-  gsap: {
-    extraPlugins: {
-      scrollTrigger: true,
-      scrollTo: true,
-    },
-  },
   generate: {
     fallback: true,
   },
